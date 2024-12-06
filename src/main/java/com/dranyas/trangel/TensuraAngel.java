@@ -37,11 +37,9 @@ public class TensuraAngel {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::onCommonSetup);
         TensuraAngelRegistry.register(modEventBus);
-        LOGGER.info("AniTen has been loaded!");
+        LOGGER.info("Tensura:Angels has been loaded!");
         FileUtils.getOrCreateDirectory(FMLPaths.CONFIGDIR.get().resolve("tensura-reincarnated"), "tensura-reincarnated");
-        ModLoadingContext.get().registerConfig(Type.SERVER, TensuraAngelConfig.SPEC, getConfigFileName("trangel-config"));
-        Path trangel = FileUtils.getOrCreateDirectory(FMLPaths.GAMEDIR.get().resolve("defaultconfigs/tensura-reincarnated"), "tensura-reincarnated");
-        copyDefaultConfig("trangel-config", trangel);
+        ModLoadingContext.get().registerConfig(Type.CLIENT, TensuraAngelConfig.SPEC, getConfigFileName("trangel-config"));
     }
 
     public static Logger getLogger() {
@@ -86,9 +84,9 @@ public class TensuraAngel {
         File tomlFile = new File("defaultconfigs/tensura-reincarnated/common.toml");
         StringBuilder contentBuilder = new StringBuilder();
 
-        String line;
+        String[] line;
         try (BufferedReader reader = new BufferedReader(new FileReader(tomlFile))) {
-            while((line = reader.readLine()) != null) {
+            while((line = new String[]{reader.readLine()}) != null) {
                 contentBuilder.append(line).append(System.lineSeparator());
             }
         } catch (IOException var16) {

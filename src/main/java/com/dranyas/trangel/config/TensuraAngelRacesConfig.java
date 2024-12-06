@@ -32,16 +32,16 @@ public class TensuraAngelRacesConfig {
 
 
     public final ForgeConfigSpec.DoubleValue epToGeneral;
-    public final ForgeConfigSpec.ConfigValue<List<? extends String>> startingRaces;
-    public final ForgeConfigSpec.ConfigValue<List<? extends String>> randomRaces;
+    public final ForgeConfigSpec.ConfigValue<List<? extends String[]>> startingRaces;
+    public final ForgeConfigSpec.ConfigValue<List<? extends String[]>> randomRaces;
 
 
 
 
     public TensuraAngelRacesConfig(ForgeConfigSpec.Builder builder) {
         builder.push("startingRaces");
-        this.startingRaces = builder.comment(new String[]{"List of races that can be selected through the Race Selection Menu", "default: [\"trangel:phantom\", \"trangel:lesser_angel\"]"}).defineList("startingRaces", Arrays.asList("trangel:phantom", "trangel:lesser_angel"), (raceRegistryObject) -> true);
-        this.randomRaces = builder.comment(new String[]{"List of races that can be obtained through picking the \"Random\" option in the Race Selection Menu", "default: the same as startingRaces"}).defineList("possibleRandomRaces", Arrays.asList("trangel:phantom", "trangel:lesser_angel", "trangel:true_dragon"), (check) -> true);
+        this.startingRaces = builder.comment(new String[] { "List of races that can be selected through the Race Selection Menu", "default: [\"tensura:human\", \"tensura:elf\", \"tensura:dwarf\", \"tensura:merfolk\", \"tensura:beastfolk\", \"tensura:goblin\", \"tensura:lizardman\", \"tensura:ogre\", \"tensura:orc\", \"tensura:slime\", \"tensura:wight\", \"tensura:ghoul\", \"tensura:lesser_daemon\"]" }).defineList("startingRaces", Arrays.asList(new String[] {"tensura:human", "tensura:elf", "tensura:dwarf", "tensura:merfolk", "tensura:beastfolk", "tensura:goblin", "tensura:lizardman", "tensura:ogre", "tensura:orc", "tensura:slime", "tensura:wight", "tensura:ghoul", "tensura:lesser_daemon" }, raceRegistryObject -> true));
+        this.randomRaces = builder.comment(new String[] { "List of races that can be obtained through picking the \"Random\" option in the Race Selection Menu", "default: the same as startingRaces" }).defineList("possibleRandomRaces", Arrays.asList(new String[] {"tensura:human", "tensura:ogre", "tensura:orc", "tensura:lizardman", "tensura:beastfolk", "tensura:slime", "tensura:merfolk", "tensura:elf", "tensura:dwarf", "tensura:goblin", "tensura:ghoul", "tensura:wight", "tensura:lesser_daemon" }, check -> true));
         builder.pop();
         builder.push("TrueDragon");
         this.TrueDragonMinEP = builder.comment("Minimum Possible EP for True Dragon").defineInRange("TrueDragonMinEP", 20000000.0D, 10000000.0D, 1.0E9D);

@@ -39,7 +39,9 @@ public class TensuraAngel {
         TensuraAngelRegistry.register(modEventBus);
         LOGGER.info("Tensura:Angels has been loaded!");
         FileUtils.getOrCreateDirectory(FMLPaths.CONFIGDIR.get().resolve("tensura-reincarnated"), "tensura-reincarnated");
-        ModLoadingContext.get().registerConfig(Type.CLIENT, TensuraAngelConfig.SPEC, getConfigFileName("trangel-config"));
+        ModLoadingContext.get().registerConfig(Type.SERVER, TensuraAngelConfig.SPEC, getConfigFileName("trangel-config"));
+        Path trangel = FileUtils.getOrCreateDirectory(FMLPaths.GAMEDIR.get().resolve("defaultconfigs/tensura-reincarnated"), "tensura-reincarnated");
+        copyDefaultConfig("trangel-config", trangel);
     }
 
     public static Logger getLogger() {
@@ -49,13 +51,6 @@ public class TensuraAngel {
     @SubscribeEvent
     public void onCommonSetup(FMLCommonSetupEvent event) {
         LOGGER.info("Common Setup");
-        if (this.isFirstLaunch()) {
-            this.editTOMLFile();
-            this.leaveATrace();
-            LOGGER.info("Common setup is working, TOML file was edited.");
-        } else {
-            LOGGER.info("Common setup is working, but the TOML file was previously edited.");
-        }
 
     }
 
@@ -96,12 +91,12 @@ public class TensuraAngel {
         }
 
         String content = contentBuilder.toString();
-        line = new String[]{"trangel:phantom", "trangel:lesser_angel"};
+        String[]  newStarting = {"trangel:phantom", "trangel:lesser_angel"};
         String[] newRandom = new String[]{"trangel:phantom", "trangel:lesser_angel", "trangel:true_dragon"};
         String startingRacesKey = "startingRaces = [";
         String randomRacesKey = "possibleRandomRaces = [";
-        content = this.addItemsToTOMLList(content, startingRacesKey, line);
-        content = this.addItemsToTOMLList(content, randomRacesKey, newRandom);
+        content = addItemsToTOMLList(content, startingRacesKey, newStarting);
+        content = addItemsToTOMLList(content, randomRacesKey, newRandom);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(tomlFile))) {
             writer.write(content);

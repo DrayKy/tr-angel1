@@ -62,18 +62,18 @@ public class TensuraAngel {
     }
 
     private boolean isFirstLaunch() {
-        File footprintFile = new File("defaultconfigs/tensura-reincarnated/anitensura_injector_footprint");
+        File footprintFile = new File("defaultconfigs/tensura-reincarnated/trangel_injector_footprint");
         return !footprintFile.exists();
     }
 
     private void leaveATrace() {
-        File footprintFile = new File("defaultconfigs/tensura-reincarnated/anitensura_injector_footprint");
+        File footprintFile = new File("defaultconfigs/tensura-reincarnated/trangel_injector_footprint");
 
         try {
             if (footprintFile.createNewFile()) {
-                System.out.println("Anitensura's config injector left a footprint file: " + footprintFile.getAbsolutePath());
+                System.out.println("Tensura:Angels's config injector left a footprint file: " + footprintFile.getAbsolutePath());
             } else {
-                System.out.println("Anitensura already left a footprint file.");
+                System.out.println("Tensura:Angels already left a footprint file.");
             }
         } catch (IOException var3) {
             var3.printStackTrace();

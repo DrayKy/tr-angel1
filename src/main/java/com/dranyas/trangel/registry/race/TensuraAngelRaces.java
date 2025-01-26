@@ -46,7 +46,7 @@ public class TensuraAngelRaces {
             helper.register("archangel", new ArchAngelRace());
             helper.register("cherub", new CherubRace());
             helper.register("seraphim", new SeraphimRace());
-            helper.register("fallen_greater_angel", new FallenGreaterAngelRace(Race.Difficulty.EASY));
+            helper.register("fallen_greater_angel", new FallenGreaterAngelRace());
             helper.register("fallen_archangel", new FallenArchAngelRace());
             helper.register("fallen_cherub", new FallenCherubRace());
             helper.register("fallen_seraphim", new FallenSeraphimRace());

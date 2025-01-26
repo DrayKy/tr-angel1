@@ -26,6 +26,8 @@ import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -129,7 +131,7 @@ public class StaffOfficerRace extends Race{
 
         Race race = TensuraPlayerCapability.getRace(player);
         double essence = 0.0;
-        if (player instanceof LocalPlayer localPlayer) {
+        if (FMLEnvironment.dist == Dist.CLIENT && player instanceof LocalPlayer localPlayer) {
             essence =  (double)localPlayer.getStats().getValue(Stats.ITEM_USED.get((Item)TensuraMobDropItems.DRAGON_ESSENCE.get()));
         } else if (player instanceof ServerPlayer serverPlayer) {
             essence =  (double)serverPlayer.getStats().getValue(Stats.ITEM_USED.get((Item)TensuraMobDropItems.DRAGON_ESSENCE.get()));

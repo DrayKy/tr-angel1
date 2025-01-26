@@ -22,9 +22,11 @@ import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.jetbrains.annotations.Nullable;
 import com.github.manasmods.tensura.capability.race.*;
 
@@ -142,7 +144,7 @@ public class FieldOfficerRace extends Race{
     public double getEvolutionPercentage(Player player) {
 
         double essence = 0.0;
-        if (player instanceof LocalPlayer localPlayer) {
+        if (FMLEnvironment.dist == Dist.CLIENT && player instanceof LocalPlayer localPlayer) {
             essence =  (double)localPlayer.getStats().getValue(Stats.ITEM_USED.get((Item)TensuraMobDropItems.DRAGON_ESSENCE.get()));
         } else if (player instanceof ServerPlayer serverPlayer) {
             essence =  (double)serverPlayer.getStats().getValue(Stats.ITEM_USED.get((Item)TensuraMobDropItems.DRAGON_ESSENCE.get()));
